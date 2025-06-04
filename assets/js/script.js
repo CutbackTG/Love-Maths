@@ -44,6 +44,8 @@ function runGame(gameType) {
         displayMultiplyQuestion(num1, num2);
     } else if (gameType === "subtract" ) {
         displaySubtractQuestion(num1, num2);
+    } else if (gameType === "division") {
+        displayDivisionQuestion(num1, num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -89,6 +91,8 @@ function calculateCorrectAnswer() {
         return [operand1 * operand2, "multiply"];
     } else if (operator === "-") {
         return [operand1 - operand2, "subtract"];
+    } else if (operator === "/") {
+        return [operand1 / operand2, "division"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting!`;
@@ -138,4 +142,20 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "x";
 
+}
+
+function displayDivisionQuestion() {
+    // Generate a divisor
+    const operand2 = Math.floor(Math.random() * 9) + 1; // 1 to 9
+
+    // Generate a quotient
+    const quotient = Math.floor(Math.random() * 10) + 1; // 1 to 10
+
+    // Compute a dividend that is a multiple of the divisor
+    const operand1 = operand2 * quotient;
+
+    // Display the operands and operator
+    document.getElementById("operand1").textContent = operand1;
+    document.getElementById("operand2").textContent = operand2;
+    document.getElementById('operator').textContent = "/";
 }
